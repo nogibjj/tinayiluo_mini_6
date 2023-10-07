@@ -46,4 +46,4 @@ transform_load:
 	python main.py transform_load
 
 query:
-	python main.py general_query "SELECT * FROM AirlineSafetyDB WHERE airline='Alaska Airlines';"
+	python main.py general_query "SELECT a.airline, (a.incidents_85_99 + b.incidents_00_14) AS total_incidents, a.fatal_accidents_85_99 + b.fatalities_85_99 AS total_fatalities_85_99, b.fatal_accidents_00_14 + b.fatalities_00_14 AS total_fatalities_00_14 FROM default.AirlineSafety1DB AS a JOIN default.AirlineSafety2DB AS b ON a.id = b.id ORDER BY total_incidents DESC LIMIT 10;"
