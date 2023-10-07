@@ -1,7 +1,103 @@
-## Python Script interacting with SQL Database
-[![CI](https://github.com/nogibjj/tinayiluo_sqlite_lab/actions/workflows/cicd.yml/badge.svg)](https://github.com/nogibjj/tinayiluo_sqlite_lab/actions/workflows/cicd.yml)
+## Complex SQL Query for a MySQL Database
+[![CI](https://github.com/nogibjj/tinayiluo_mini_6/actions/workflows/cicd.yml/badge.svg)](https://github.com/nogibjj/tinayiluo_mini_6/actions/workflows/cicd.yml)
 
-Week 5 Mini Project
+Week 6: Complex SQL Query for a MySQL Database
+Requirements
+● Design a complex SQL query involving joins, aggregation, and sorting
+● Provide an explanation for what the query is doing and the expected results
+Grading Criteria
+● Query functionality (20 points)
+● Explanation and documentation (20 points)
+Deliverables
+● SQL query
+● Written or video explanation of the query
+
+### Outline 
+Readme outline
+
+Keytakeaway: Database on the cloud Azure
+
+Step 1:
+In Azure databricks
+Create new database warehouse 
+Create tokens
+
+Step 2:
+Install requirements
+# add necessary databricks req
+pandas
+python-dotenv
+databricks-sql-connector
+
+
+Step 3:
+Extract (Split the dataset into two csv)
+Airline-safety1
+Airline-safety2
+
+Step 4:
+Create .env file
+All three of them as Authentication for database
+Include the following:
+SERVER_HOSTNAME="adb-2936245752500798.18.azuredatabricks.net"
+HTTP_PATH="/sql/1.0/warehouses/95ca28319da5dfdc"
+ACCESS_TOKEN="dapi97b9040f77d95af676a677843daaa23e-3"
+
+Step 5:
+Transform Load (edit CSV file and link to Databricks)
+
+Step 6:
+Query (general query)
+
+Step 7:
+Main.py (calling extract, transform load, general query)
+
+Step 9:
+test_main.py (test extract, transform load, query specify as one complex SQL query involving join, aggregate, sorting)
+
+Step 10:
+Make file (specifically modify query to specify as one complex SQL query involving join, aggregate, sorting. Make file is make everything in GitHub Actions)
+
+In the terminal:
+1. main use itself 
+python main.py general_query "SELECT
+        a.airline,
+        (a.incidents_85_99 + b.incidents_00_14) AS total_incidents,
+        a.fatal_accidents_85_99 + b.fatalities_85_99 AS total_fatalities_85_99,
+        b.fatal_accidents_00_14 + b.fatalities_00_14 AS total_fatalities_00_14
+    FROM
+        default.AirlineSafety1DB AS a
+    JOIN
+        default.AirlineSafety2DB AS b
+    ON
+        a.id = b.id
+    ORDER BY
+        total_incidents DESC LIMIT 10;"
+
+2. test_Main use main 
+python test_main.py
+
+3. GitHub Actions: Make file 
+make query          
+
+query_log.md will keep record of every change makes to the query
+
+Step 11:
+Change cicd.yml (GitHub Actions add three secret)      
+From .env
+SERVER_HOSTNAME="adb-2936245752500798.18.azuredatabricks.net"
+HTTP_PATH="/sql/1.0/warehouses/95ca28319da5dfdc"
+ACCESS_TOKEN="dapi97b9040f77d95af676a677843daaa23e-3"
+
+The point of secret is connecting GitHub Actions with Azure data warehouse
+
+Step 12:
+In command line:
+“Make” everything in Make file     
+
+Step 13:
+Make a Diagram showing the logic (Connecting Database on the Cloud)
+drawio.com
 
 ### Goal
 
