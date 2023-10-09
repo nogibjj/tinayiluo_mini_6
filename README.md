@@ -127,7 +127,7 @@ query:
 My SQL query performs several operations that highlight the use of joins, aggregation, and sorting:
 * Joining the two tables `AirlineSafety1DB` and `AirlineSafety2DB` on the id column.
 * Calculating the total incidents for each airline from both periods (1985-1999 and 2000-2014).
-* Finding out the total fatalities for each period.
+* Finding out the total fatal accidents and fatalities for each period.
 * Sorting the results by total incidents in descending order to see which airlines had the most incidents over the combined period,limiting the output to the top 10 rows.
 
 ```sql
