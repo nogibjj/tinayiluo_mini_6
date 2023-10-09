@@ -48,36 +48,36 @@ The dataset `airline-safety.csv` originates from the Aviation Safety Network and
 #### Step 4: ETL-Query
 - In my.lib, add extract.py, transform_load.py and query.py that perform:
 
-* ETL-Query:  [E] Extract a dataset from URL, [T] Transform, [L] Load into SQLite Database and [Q] Query
+      * ETL-Query:  [E] Extract a dataset from URL, [T] Transform, [L] Load into SQLite Database and [Q] Query
 
-* [E] Extract dataset from the URL to `airline-safety.csv` from Github.
-   In the `extract` function:
-   - Download `airline-safety.csv`
-   - Split `airline-safety.csv` into two CSV files:
-     - `Airline-safety1.csv`
-     - `Airline-safety2.csv`
-   - Saves both CSV files as separate files in the data folder.
+      * [E] Extract dataset from the URL to `airline-safety.csv` from Github.
+      In the `extract` function:
+      - Download `airline-safety.csv`
+      - Split `airline-safety.csv` into two CSV files:
+      - `Airline-safety1.csv`
+      - `Airline-safety2.csv`
+      - Saves both CSV files as separate files in the data folder.
 
-* [T] [L] Transform the data to get it ready for analysis and load the transformed data into Azure databricks.
-   In the `load` function:
-   - Set up default paths for two airline safety datasets `Airline-safety1.csv` and `Airline-safety2.csv`.
-   - Read both datasets into Pandas DataFrames, `df` and `df2`.
-   - Connect to Azure Databricks using the retrieved environment variables.
-   - Check if 'AirlineSafety1*' exists; if not, create 'AirlineSafety1DB' and populate it using `df`. Transform the dataset by adding necessary index column.
-   - Check if 'AirlineSafety2*' exists; if not, create 'AirlineSafety2DB' and populate it using `df2`. Transform the dataset by adding necessary index column.
-   - Close the database cursor.
-   - Return "success" upon completion.
+      * [T] [L] Transform the data to get it ready for analysis and load the transformed data into Azure databricks.
+      In the `load` function:
+      - Set up default paths for two airline safety datasets `Airline-safety1.csv` and `Airline-safety2.csv`.
+      - Read both datasets into Pandas DataFrames, `df` and `df2`.
+      - Connect to Azure Databricks using the retrieved environment variables.
+      - Check if 'AirlineSafety1*' exists; if not, create `AirlineSafety1DB` and populate it using `df`. Transform the dataset by adding necessary index column.
+      - Check if 'AirlineSafety2*' exists; if not, create `AirlineSafety2DB` and populate it using `df2`. Transform the dataset by adding necessary index column.
+      - Close the database cursor.
+      - Return "success" upon completion.
 
-* [Q] Write and execute complex SQL queries involving joins, aggregation, and sorting to analyze and retrieve insights from the data.
-   - Set a global variable LOG_FILE for logging queries in "query_log.md".
-   In the `log_query` function:
-   - Logs both the SQL query and its result into query_log.md.
-   In the `general_query` function:
-   - Loads environment variables to get connection details.
-   - Connects to Azure Databricks using these details.
-   - Executes the provided SQL query and fetches results.
-   - Logs the query and its results using the log_query function.
-   - Closes the database connection.
+      * [Q] Write and execute SQL queries to analyze and retrieve insights from the data.
+      - Set a global variable LOG_FILE for logging queries in `query_log.md`.
+      In the `log_query` function:
+      - Logs both the SQL query and its result into `query_log.md`.
+      In the `general_query` function:
+      - Loads environment variables to get connection details.
+      - Connects to Azure Databricks using these details.
+      - Executes the provided SQL query and fetches results.
+      - Logs the query and its results.
+      - Closes the database connection.
 
 <img width="748" alt="Screen Shot 2023-10-08 at 6 25 05 PM" src="https://github.com/nogibjj/tinayiluo_sqlite_lab/assets/143360909/e642c00e-7481-4ad9-b325-4fd50e338152">
 
@@ -175,7 +175,6 @@ In summary, this query joins two datasets, aggregates certain metrics across two
 Below is the Architecture Diagram showcase the connection and flow between Python scripts and the Azure Databricks Database.
 
 ![SQL Python Script and Azure Databricks drawio](https://github.com/nogibjj/tinayiluo_mini_6/assets/143360909/25ed0bb8-3c03-4937-938e-a2ee3578e8a8)
-
 
 ### Make Format, Test, Lint, All Approval Image
 
