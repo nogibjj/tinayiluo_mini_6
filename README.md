@@ -174,7 +174,8 @@ In summary, this query joins two datasets, aggregates certain metrics across two
 
 Below is the Architecture Diagram showcase the connection and flow between Python scripts and the Azure Databricks Database.
 
-![SQL Python Script and Azure Databricks.drawio](https://github.com/nogibjj/tinayiluo_sqlite_lab/assets/143360909/6ddfa32e-d164-40fd-9413-8d0e1654bbc1)
+![SQL Python Script and Azure Databricks drawio](https://github.com/nogibjj/tinayiluo_mini_6/assets/143360909/25ed0bb8-3c03-4937-938e-a2ee3578e8a8)
+
 
 ### Make Format, Test, Lint, All Approval Image
 
