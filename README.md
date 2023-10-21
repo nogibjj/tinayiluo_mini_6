@@ -11,6 +11,12 @@
 
 The workflow includes running a Makefile to perform tasks such as installation (`make install`), testing (`make test`), code formatting (`make format`) with Python Black, linting (`make lint`) with Ruff, and an all-inclusive task (`make all`) using `Github Actions`. This automation streamlines the data analysis process and enhances code quality.
 
+### Architectural Diagram 
+
+Below is the Architecture Diagram showcase the connection and flow between Python scripts and the Azure Databricks Database.
+
+![SQL Python Script and Azure Databricks drawio](https://github.com/nogibjj/tinayiluo_mini_6/assets/143360909/25ed0bb8-3c03-4937-938e-a2ee3578e8a8)
+
 ### Preperation
 
 + I forked tinayiluo_sqlite_lab.
@@ -92,7 +98,33 @@ The dataset `airline-safety.csv` originates from the Aviation Safety Network and
   - Test data extraction.
   - Test data transformation and loading.
   - Test SQL queries, especially those involving joins, aggregation, and sorting.
-
+    ```
+    def test_general_query():
+	"""tests general_query()"""
+	query = """
+	SELECT
+	    a.airline,
+	    (a.incidents_85_99 + b.incidents_00_14) AS total_incidents,
+	    a.fatal_accidents_85_99 + b.fatalities_85_99 AS total_fatalities_85_99,
+	    b.fatal_accidents_00_14 + b.fatalities_00_14 AS total_fatalities_00_14
+	FROM 
+	    default.AirlineSafety1DB AS a
+	JOIN 
+	    default.AirlineSafety2DB AS b
+	ON 
+	    a.id = b.id
+	ORDER BY 
+	    total_incidents DESC LIMIT 10;
+	"""
+	result = subprocess.run(
+	    ["python", "main.py", "general_query", query],
+	    capture_output=True,
+	    text=True,
+	    check=True,
+	)
+	assert result.returncode == 0
+    ```
+    
 #### Step 7: Streamline with Makefile
 - Utilize Makefile to automate tasks with Github Actions.
 - add:
@@ -169,12 +201,6 @@ In summary, this query joins two datasets, aggregates certain metrics across two
 [log of successful database operations](./query_log.md)
 
 <img width="834" alt="Screen Shot 2023-10-08 at 5 05 10 PM" src="https://github.com/nogibjj/tinayiluo_mini_6/assets/143360909/e3b8864c-d463-4ccf-9b3e-e195f27c815a">
-
-### Architectural Diagram 
-
-Below is the Architecture Diagram showcase the connection and flow between Python scripts and the Azure Databricks Database.
-
-![SQL Python Script and Azure Databricks drawio](https://github.com/nogibjj/tinayiluo_mini_6/assets/143360909/25ed0bb8-3c03-4937-938e-a2ee3578e8a8)
 
 ### Make Format, Test, Lint, All Approval Image
 
