@@ -85,8 +85,6 @@ The dataset `airline-safety.csv` originates from the Aviation Safety Network and
       - Logs the query and its results.
       - Closes the database connection.
 
-<img width="748" alt="Screen Shot 2023-10-08 at 6 25 05 PM" src="https://github.com/nogibjj/tinayiluo_sqlite_lab/assets/143360909/e642c00e-7481-4ad9-b325-4fd50e338152">
-
 #### Step 5: Implement Main Script
 - Convert the `main.py` into a command-line tool that run each step independantly:
   - Extract
